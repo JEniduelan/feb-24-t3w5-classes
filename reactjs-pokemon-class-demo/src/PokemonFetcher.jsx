@@ -13,6 +13,7 @@ export default class PokemonFetcher extends React.Component {
 			pokemonList: [],
 			// pokemon1: null,
 			// pokemon2: null
+			userJwt: null
 		}
 	}
 
@@ -32,17 +33,27 @@ export default class PokemonFetcher extends React.Component {
 			// this.state.pokemonList.push(data);
 			// this.setState({pokemonList: [data]});
 			// this.setState({pokemonList: [...this.state.pokemonList, data]});
-			this.setState({pokemonList: [...this.state.pokemonList, data]});
+			// this.setState({pokemonList: [...this.state.pokemonList, data]});
 			this.setState((previousState) => {
 				return {
 					pokemonList: [...previousState.pokemonList, data]
 				}
 			});
-			this.setState({pokemonList: [...this.state.pokemonList, data]});
+			
 		}
 		
 
 		console.log("PokemonFetcher first load on the page");
+	}
+
+	componentDidUpdate(){
+		console.log("Page has rendered! The current state is: " + this.state.pokemonList);
+
+		if (this.state.userJwt){
+			console.log("User is logged in!");
+		} else {
+			console.log("User is logged out");
+		}
 	}
 
 	render(){
